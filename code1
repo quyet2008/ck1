@@ -1,0 +1,105 @@
+#include <iostream>
+#include <conio.h>
+#include <string>
+#include <Windows.h>
+#define N 100
+using namespace std;
+struct SACH {
+	char MASACH[8];
+	string TENSACH;
+	string TACGIA;
+	string NXB;
+	int GIA;
+	int SOTRANG;
+	int NAMXB;
+};
+string AskContinue(string &a) {
+
+	cout << endl;
+
+	cin.ignore();
+	do {
+		cout << "Ban co muon tiep tuc(Co/Khong): ";
+		getline(cin, a);
+
+		if (a == "Khong") {
+			exit(0);
+		}
+	} while (a != "Khong" && a != "Co");
+	return a;
+}
+void NHAPDS(SACH* DS[100],int &n) {
+	
+	cout << "So quyen sach can nhap: ";
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		cout << "Sach thu " << i + 1 << ": " << endl;
+		cout << "Ma Sach: ";
+		cin >> DS[i]->MASACH;
+		cin.ignore();
+		cout << "Ten Sach: ";
+		getline(cin, DS[i]->TENSACH);
+		cout << "Tac Gia: ";
+		getline(cin, DS[i]->TENSACH);
+		cout << "Nha Xuat Ban: ";
+		getline(cin, DS[i]->NXB);
+		cout << "Gia: ";
+		cin >> DS[i]->GIA;
+		cout << "So Trang: ";
+		cin >> DS[i]->SOTRANG;
+		cout << "Nam Xuat Ban: ";
+		cin >> DS[i]->NAMXB;
+	}
+}
+void XUATDS(SACH *DS[],int &n) {
+	for (int i = 0; i < n; i++) {
+		
+		cout << "Ma Sach: " << DS[i]->MASACH << endl;
+		cout << "Ten Sach: " << DS[i]->TENSACH << endl;
+		cout << "Tac Gia: " << DS[i]->TACGIA << endl;
+		cout << "Nha Xuat Ban: "<< DS[i]->NXB << endl;
+		cout << "Gia: "<< DS[i]->GIA<<".000VND" << endl;
+		cout << "So Trang: "<< DS[i]->SOTRANG << endl;
+		cout << "Nam Xuat Ban: " << DS[i]->NAMXB << endl;
+		cout << "---------------------------------------" << endl;
+	}
+}
+void XEPTANG(SACH *DS[], int &n) {
+	for (int i = 0; i < n - 1; i++) {
+		if (DS[i]->NAMXB > DS[i + 1]->NAMXB) {
+			SACH *temp = DS[i];
+			DS[i] = DS[i + 1];
+			DS[i + 1] = temp;
+			}
+	}
+}
+
+void main() {
+	int a;
+	SACH *DS[N];
+	int n;
+	string choose;
+	do {
+		system("cls");
+		cout << "Nhap tuy chon: ";
+		cin >> a;
+		switch (a)
+		{
+		case 1:
+			NHAPDS(DS, n);
+			AskContinue(choose);
+			break;
+		case 2:
+			XUATDS(DS, n);
+			AskContinue(choose);
+			break;
+		case 3:
+			XEPTANG(DS, n);
+			AskContinue(choose);
+			break;
+		case 4:
+			break;
+		}
+	} while (choose == "Co");
+	_getch();
+}
