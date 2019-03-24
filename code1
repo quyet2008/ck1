@@ -28,7 +28,7 @@ string AskContinue(string &a) {
 	} while (a != "Khong" && a != "Co");
 	return a;
 }
-void NHAPDS(SACH* DS[100],int &n) {
+void NHAPDS(SACH* DS,int &n) {
 	
 	cout << "So quyen sach can nhap: ";
 	cin >> n;
@@ -51,7 +51,7 @@ void NHAPDS(SACH* DS[100],int &n) {
 		cin >> DS[i]->NAMXB;
 	}
 }
-void XUATDS(SACH *DS[],int &n) {
+void XUATDS(SACH *DS,int &n) {
 	for (int i = 0; i < n; i++) {
 		
 		cout << "Ma Sach: " << DS[i]->MASACH << endl;
@@ -64,7 +64,7 @@ void XUATDS(SACH *DS[],int &n) {
 		cout << "---------------------------------------" << endl;
 	}
 }
-void XEPTANG(SACH *DS[], int &n) {
+void XEPTANG(SACH *DS, int &n) {
 	for (int i = 0; i < n - 1; i++) {
 		if (DS[i]->NAMXB > DS[i + 1]->NAMXB) {
 			SACH *temp = DS[i];
@@ -76,7 +76,7 @@ void XEPTANG(SACH *DS[], int &n) {
 
 void main() {
 	int a;
-	SACH *DS[N];
+	SACH DS[N];
 	int n;
 	string choose;
 	do {
@@ -86,15 +86,15 @@ void main() {
 		switch (a)
 		{
 		case 1:
-			NHAPDS(DS, n);
+			NHAPDS(&DS, n);
 			AskContinue(choose);
 			break;
 		case 2:
-			XUATDS(DS, n);
+			XUATDS(&DS, n);
 			AskContinue(choose);
 			break;
 		case 3:
-			XEPTANG(DS, n);
+			XEPTANG(&DS, n);
 			AskContinue(choose);
 			break;
 		case 4:
